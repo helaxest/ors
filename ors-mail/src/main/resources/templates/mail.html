@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>入职欢迎邮件</title>
+</head>
+<body>
+<h1 align="center">
+报销结果通知书
+</h1>
+<p>
+<span th:text="${name}"></span>你好:<br>
+经相关部门审核决定,您申请的报销<span th:text="${money}"></span>元,已被批准同意。
+</p>
+<p>xxx有限公司&copy;</p>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Project exclude paths
+/ors-generator/target/
+/ors-mail/target/
+/ors-server/target/

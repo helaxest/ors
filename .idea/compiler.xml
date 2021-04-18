@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$" includeSubdirectories="false" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ors-generator" />
+        <module name="ors-server" />
+        <module name="ors-mail" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ors" target="1.8" />
+      <module name="ors-generator" target="1.8" />
+      <module name="ors-mail" target="1.8" />
+      <module name="ors-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ors" options="-parameters" />
+      <module name="ors-generator" options="-parameters" />
+      <module name="ors-mail" options="-parameters" />
+      <module name="ors-server" options="-parameters" />
+    </option>
+  </component>
+</project>

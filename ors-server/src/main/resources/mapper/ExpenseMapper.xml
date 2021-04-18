@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyy.server.mapper.ExpenseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hyy.server.pojo.Expense">
+        <id column="id" property="id"/>
+        <result column="category" property="category"/>
+        <result column="title" property="title"/>
+        <result column="depName" property="depName"/>
+        <result column="money" property="money"/>
+        <result column="content" property="content"/>
+        <result column="email" property="email"/>
+        <result column="applyId" property="applyId"/>
+        <result column="applyName" property="applyName"/>
+        <result column="dealId" property="dealId"/>
+        <result column="dealName" property="dealName"/>
+        <result column="dealWay" property="dealWay"/>
+        <result column="dealResult" property="dealResult"/>
+        <result column="attachment" property="attachment"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id
+        , category, title, depName, money, content, email, applyId, applyName, dealId, dealName, dealWay, dealResult, attachment, createDate, updateDate
+    </sql>
+    <select id="getExpenseByPage" resultMap="BaseResultMap">
+        select * from t_expense where t_expense.id>0
+
+        <if test="null!=expense.dealResult and ''!=expense.dealResult">
+            and t_expense.dealResult =#{expense.dealResult}
+        </if>
+        <if test="null!=expense.dealWay and ''!=expense.dealWay">
+            and t_expense.dealWay =#{expense.dealWay}
+        </if>
+        <if test="null!=expense.depName and ''!=expense.depName">
+            and t_expense.depName =#{expense.depName}
+        </if>
+        <if test="null!=expense.category and ''!=expense.category">
+            and t_expense.category =#{expense.category}
+        </if>
+        <if test="null!=expense.applyId">
+            and t_expense.applyId =#{expense.applyId}
+        </if>
+        <if test="null!=expense.applyName and ''!=expense.applyName">
+            and t_expense.applyName LIKE CONCAT('%', #{expense.applyName}, '%')
+        </if>
+        <if test="null!=expense.dealId">
+            and t_expense.dealId =#{expense.dealId}
+        </if>
+        <if test="null!=expense.dealName and ''!=expense.dealName ">
+            and t_expense.dealName LIKE CONCAT('%', #{expense.dealName}, '%')
+        </if>
+        <if test="null!=expense.id">
+            and t_expense.id =#{expense.id}
+        </if>
+        <if test="null!=beginDateScope and 2== beginDateScope.length ">
+            and t_expense.createDate BETWEEN #{beginDateScope[0]} AND #{beginDateScope[1]}
+        </if>
+        ORDER BY
+        t_expense.id
+
+    </select>
+    <select id="getExpense" resultMap="BaseResultMap">
+        select *
+        from t_expense
+        where t_expense.id>0
+        <if test="null!=id">
+            AND t_expense.id=#{id}
+        </if>
+    </select>
+
+</mapper>

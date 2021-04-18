@@ -1,0 +1,43 @@
+server:
+  port: 8082
+spring:
+  mail:
+    host: smtp.163.com
+    protocol: smtps
+    password: SFGYFZNDNMLVNBDM
+    default-encoding: utf-8
+    username: downloads233@163.com
+    port: 465
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        #开启手动确认
+        acknowledge-mode: manual
+
+  redis:
+    # 超时时间
+    timeout: 10000ms
+    # 服务器地址
+    host: localhost
+    # 端口
+    port: 6379
+    # 数据库
+    database: 0
+    password: 123456
+    lettuce:
+      pool:
+        # 默认连接数
+        max-active: 1024
+        # 最大链接阻塞时间
+        max-wait: 10000ms
+        # 最大空闲连接
+        max-idle: 200
+        # 最小空闲连接
+        min-idle: 5
+
+

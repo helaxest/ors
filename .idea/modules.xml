@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ors.iml" filepath="$PROJECT_DIR$/ors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ors-generator/ors-generator.iml" filepath="$PROJECT_DIR$/ors-generator/ors-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ors-mail/ors-mail.iml" filepath="$PROJECT_DIR$/ors-mail/ors-mail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ors-server/ors-server.iml" filepath="$PROJECT_DIR$/ors-server/ors-server.iml" />
+    </modules>
+  </component>
+</project>
