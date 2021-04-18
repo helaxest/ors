@@ -18,6 +18,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 /**
  * Description
@@ -29,6 +33,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+//    @Autowired
+//    private DataSource dataSource;
     @Autowired
     private IAdminService adminService;
     @Autowired
@@ -55,6 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //基于token也就不需要session
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(60).userDetailsService(userDetailsService())
                 .and()//表示可以继续往下配
                 .authorizeRequests()
 //                .antMatchers("/login", "/logout")//允许登录
@@ -106,6 +114,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
+    /**
+     * remember-me功能 jdbc创建token存储
+     * @return
+     */
+//    @Bean
+//    public PersistentTokenRepository persistentTokenRepository(){
+//        JdbcTokenRepositoryImpl jdbcTokenRepository=new JdbcTokenRepositoryImpl();
+//        jdbcTokenRepository.setDataSource(dataSource);
+//        //第二次注释掉
+//        jdbcTokenRepository.setCreateTableOnStartup(true);
+//        return jdbcTokenRepository;
+//    }
 
     @Bean
     public JwtAuthencationTokenFilter jwtAuthencationTokenFilter() {

@@ -91,7 +91,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
             }
         });
     }
-
     /**
      * 配置消息代理
      *

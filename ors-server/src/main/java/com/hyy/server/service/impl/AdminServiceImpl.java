@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -149,6 +150,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public List<Admin> getAdminByRole(String theRole) {
         return adminMapper.getAdminByRole(AdminUtils.getCurrentAdmin().getId(),theRole);
+    }
+
+    @Override
+    public RespBean updateAdminPassWord(String oldPass, String pass, Integer adminId) {
+        Admin admin = adminMapper.selectById(adminId);
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        if(encoder.matches(oldPass, admin.getPassword())){
+            admin.setPassword(encoder.encode(pass));
+            int result = adminMapper.updateById(admin);
+            if(result==1){
+                return  RespBean.success("更新成功");
+            }
+        }
+        return RespBean.error("更新失败");
     }
 
 
